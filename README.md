@@ -10,7 +10,7 @@ This is a Simple Note-Taking Application built using the MERN stack. Users can e
 - **Frontend:**
   - React.js for building the user interface.
 - **Deployment:**
-  - Vercel for deployment.
+  - Vercel for Front deployment.
 
 ## Installation and Setup
 
