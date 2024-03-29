@@ -10,8 +10,6 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import "./style.css";
-import notebg from "../../../assets/note_bg.png";
 import { useDispatch } from "react-redux";
 import { deleteNotes, updateNotes } from "../../../Redux/notes/note.actions";
 import {
@@ -27,7 +25,7 @@ import { useRef, useState } from "react";
 
 export default function NoteCard({ title, body, user, _id }) {
   const dispatch = useDispatch();
-  const [notes, setNotes] = useState([]);
+  // const [notes, setNotes] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = useRef(null);
@@ -35,15 +33,16 @@ export default function NoteCard({ title, body, user, _id }) {
   const [tempTitle, setTitle] = useState(title);
   const [tempBody, setBody] = useState(body);
 
-  const updateNote =()=>{
-
-    dispatch(updateNotes(_id,{title:tempTitle,body:tempBody}))
-    onClose()
-
-  }
+  const updateNote = () => {
+    dispatch(updateNotes(_id, { title: tempTitle, body: tempBody }));
+    onClose();
+  };
 
   return (
-    <Card backgroundImage={`url(${notebg})`}>
+    <Card
+      boxShadow={"inset 5px 5px 100px #7a420c, inset -5px -5px 100px #ffa820"}
+      backgroundColor={"#da7516"}
+    >
       <CardBody>
         <VStack>
           <Heading>{title}</Heading>
@@ -51,7 +50,7 @@ export default function NoteCard({ title, body, user, _id }) {
 
           <Flex gap={2}>
             <>
-              <Button onClick={onOpen}>Update</Button>
+              <Button onClick={onOpen}>Edit</Button>
 
               <Modal
                 initialFocusRef={initialRef}
@@ -61,7 +60,7 @@ export default function NoteCard({ title, body, user, _id }) {
               >
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Update Note</ModalHeader>
+                  <ModalHeader>Edit Note</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody pb={6}>
                     <Input
@@ -79,8 +78,8 @@ export default function NoteCard({ title, body, user, _id }) {
                   </ModalBody>
 
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={updateNote}>
-                      Update
+                    <Button colorScheme="green" mr={3} onClick={updateNote}>
+                      Edit
                     </Button>
                     <Button onClick={onClose}>Cancel</Button>
                   </ModalFooter>
